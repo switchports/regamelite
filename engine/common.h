@@ -81,8 +81,8 @@ typedef struct incomingtransfer_s
 #define printf2 _printf2
 #define chatf _print_chat
 
-#define Q_close _close
-#define Q_write _write
+#define Q_close close
+#define Q_write write
 #define Q_memset memset
 #define Q_memcpy memcpy
 #define Q_strlen strlen
@@ -96,9 +96,9 @@ typedef struct incomingtransfer_s
 #define Q_strncmp strncmp
 //#define Q_strcasecmp _stricmp		// Use Q_stricmp
 //#define Q_strncasecmp _strnicmp	// Use Q_strnicmp
-#define Q_strdup _strdup
-#define Q_stricmp _stricmp
-#define Q_strnicmp _strnicmp
+#define Q_strdup strdup
+#define Q_stricmp stricmp
+#define Q_strnicmp strnicmp
 #define Q_strstr strstr
 #define Q_strchr strchr
 #define Q_strrchr strrchr
@@ -110,7 +110,7 @@ typedef struct incomingtransfer_s
 #define Q_memmove memmove
 //#define Q_strtoull strtoull
 //#define Q_FileNameCmp FileNameCmp
-#define Q_vsnprintf _vsnprintf
+#define Q_vsnprintf vsnprintf
 #define Q_vsnwprintf _vsnwprintf
 
 #endif // COMMON_H

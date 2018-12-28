@@ -596,6 +596,7 @@ inline void COM_FixSlashes(char *pname)
 
 bool SaveNavigationMap(const char *filename)
 {
+#ifndef __SWITCH__
 	if (filename == NULL)
 		return false;
 
@@ -665,7 +666,7 @@ bool SaveNavigationMap(const char *filename)
 	}
 
 	Q_close(fd);
-
+#endif
 	return true;
 }
 

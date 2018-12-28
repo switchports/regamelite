@@ -70,6 +70,15 @@
 	#include <sys/types.h>
 	#include <sys/stat.h>
 	#include <io.h>
+#elif defined(__SWITCH__)
+	#include <ctype.h>
+	#include <errno.h>
+	#include <fcntl.h>
+	#include <limits.h>
+	#include <sys/stat.h>
+	#include <sys/time.h>
+	#include <sys/types.h>
+	#include <unistd.h>
 #else // _WIN32
 	#include <arpa/inet.h>
 	#include <ctype.h>
@@ -119,7 +128,9 @@ typedef unsigned char      uint8;
 	typedef unsigned int uchar32;
 #endif
 #else // _WIN32
+#ifndef __SWITCH__
 	typedef unsigned long long uint64_t;
+#endif
 	typedef unsigned int uint32_t;
 	typedef unsigned short uint16_t;
 	typedef unsigned char uint8_t;
@@ -130,8 +141,9 @@ typedef unsigned char      uint8;
 		typedef short int16_t;
 		//typedef char int8_t;
 	#endif
+#ifndef __SWITCH__
 typedef long long __int64_t;
-
+#endif
 	typedef unsigned char byte;
 	typedef unsigned char BYTE;
 	typedef unsigned long ULONG;

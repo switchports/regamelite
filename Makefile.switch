@@ -1,0 +1,7 @@
+all: libserver.a
+
+libserver.a:
+	$(MAKE) -C dlls -f Makefile.switch
+
+clean:
+	$(MAKE) -C dlls -f Makefile.switch clean

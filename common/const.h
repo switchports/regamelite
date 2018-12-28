@@ -32,6 +32,8 @@
 #pragma once
 #endif
 
+#include "common.h"
+
 // buttons
 #ifndef IN_BUTTONS_H
 #include "in_buttons.h"

@@ -1,0 +1,155 @@
+PREFIX    = $(DEVKITPRO)/devkitA64/bin/aarch64-none-elf
+CC        = $(PREFIX)-gcc
+CXX       = $(PREFIX)-g++
+AR        = $(PREFIX)-ar
+
+OBJS = airtank.o \
+ammo.o \
+animating.o \
+animation.o \
+bmodels.o \
+bot/cs_bot_chatter.o \
+bot/cs_bot.o \
+bot/cs_bot_event.o \
+bot/cs_bot_init.o \
+bot/cs_bot_learn.o \
+bot/cs_bot_listen.o \
+bot/cs_bot_manager.o \
+bot/cs_bot_nav.o \
+bot/cs_bot_pathfind.o \
+bot/cs_bot_radio.o \
+bot/cs_bot_statemachine.o \
+bot/cs_bot_update.o \
+bot/cs_bot_vision.o \
+bot/cs_bot_weapon.o \
+bot/cs_gamestate.o \
+bot/states/cs_bot_attack.o \
+bot/states/cs_bot_buy.o \
+bot/states/cs_bot_defuse_bomb.o \
+bot/states/cs_bot_escape_from_bomb.o \
+bot/states/cs_bot_fetch_bomb.o \
+bot/states/cs_bot_follow.o \
+bot/states/cs_bot_hide.o \
+bot/states/cs_bot_hunt.o \
+bot/states/cs_bot_idle.o \
+bot/states/cs_bot_investigate_noise.o \
+bot/states/cs_bot_move_to.o \
+bot/states/cs_bot_plant_bomb.o \
+bot/states/cs_bot_use_entity.o \
+buttons.o \
+career_tasks.o \
+cbase.o \
+client.o \
+combat.o \
+debug.o \
+doors.o \
+effects.o \
+explode.o \
+func_break.o \
+func_tank.o \
+game.o \
+gamerules.o \
+ggrenade.o \
+globals.o \
+h_ai.o \
+h_battery.o \
+h_cycler.o \
+healthkit.o \
+h_export.o \
+hintmessage.o \
+hostage/hostage.o \
+hostage/hostage_improv.o \
+hostage/hostage_localnav.o \
+hostage/states/hostage_animate.o \
+hostage/states/hostage_escape.o \
+hostage/states/hostage_follow.o \
+hostage/states/hostage_idle.o \
+hostage/states/hostage_retreat.o \
+items.o \
+lights.o \
+maprules.o \
+mortar.o \
+mpstubb.o \
+multiplay_gamerules.o \
+observer.o \
+pathcorner.o \
+plane.o \
+plats.o \
+player.o \
+singleplay_gamerules.o \
+skill.o \
+sound.o \
+soundent.o \
+spectator.o \
+subs.o \
+training_gamerules.o \
+triggers.o \
+tutor_base_states.o \
+tutor_base_tutor.o \
+tutor.o \
+tutor_cs_states.o \
+tutor_cs_tutor.o \
+util.o \
+vehicle.o \
+weapons.o \
+weapontype.o \
+world.o \
+wpn_shared/wpn_ak47.o \
+wpn_shared/wpn_aug.o \
+wpn_shared/wpn_awp.o \
+wpn_shared/wpn_c4.o \
+wpn_shared/wpn_deagle.o \
+wpn_shared/wpn_elite.o \
+wpn_shared/wpn_famas.o \
+wpn_shared/wpn_fiveseven.o \
+wpn_shared/wpn_flashbang.o \
+wpn_shared/wpn_g3sg1.o \
+wpn_shared/wpn_galil.o \
+wpn_shared/wpn_glock18.o \
+wpn_shared/wpn_hegrenade.o \
+wpn_shared/wpn_knife.o \
+wpn_shared/wpn_m249.o \
+wpn_shared/wpn_m3.o \
+wpn_shared/wpn_m4a1.o \
+wpn_shared/wpn_mac10.o \
+wpn_shared/wpn_mp5navy.o \
+wpn_shared/wpn_p228.o \
+wpn_shared/wpn_p90.o \
+wpn_shared/wpn_scout.o \
+wpn_shared/wpn_sg550.o \
+wpn_shared/wpn_sg552.o \
+wpn_shared/wpn_smokegrenade.o \
+wpn_shared/wpn_tmp.o \
+wpn_shared/wpn_ump45.o \
+wpn_shared/wpn_usp.o \
+wpn_shared/wpn_xm1014.o \
+../engine/unicode_strtools.o \
+../game_shared/bot/bot.o \
+../game_shared/bot/bot_manager.o \
+../game_shared/bot/bot_profile.o \
+../game_shared/bot/bot_util.o \
+../game_shared/bot/nav_area.o \
+../game_shared/bot/nav_file.o \
+../game_shared/bot/nav_node.o \
+../game_shared/bot/nav_path.o \
+../game_shared/shared_util.o \
+../game_shared/voice_gamemgr.o \
+../pm_shared/pm_debug.o \
+../pm_shared/pm_math.o \
+../pm_shared/pm_shared.o \
+../public/MemPool.o \
+../utils/switch/switch_server.o
+
+INCLUDES = -I. -I.. -I./hostage -I./bot -I../engine -I../common -I../public -I../pm_shared -I../game_shared -I../game_shared/bot -I../utils/switch -include "../utils/switch/switch_defs.h"
+DEFINES = -Dstricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_snprintf=snprintf -DCLIENT_WEAPONS -DNO_VOICEGAMEMGR -D__SWITCH__
+CFLAGS = -march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE -g3 -O2 -Wl,-q -Wfatal-errors -Wno-write-strings -fsigned-char -fno-lto -fno-short-enums $(DEFINES) $(INCLUDES)
+CXXFLAGS = $(CFLAGS) -std=gnu++11 -fno-exceptions -fno-threadsafe-statics -fpermissive -static-libstdc++ -static-libgcc -Wno-invalid-offsetof
+ASFLAGS = $(CFLAGS)
+
+all: libserver.a
+
+libserver.a: $(OBJS)
+	$(AR) rcs $@ $^
+
+clean:
+	@rm -rf libserver.a $(OBJS)

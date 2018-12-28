@@ -13,3 +13,5 @@
 *.sdf
 *.iobj
 *.ipdb
+*.o
+*.a
