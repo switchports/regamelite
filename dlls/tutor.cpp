@@ -53,7 +53,7 @@ void Tutor_RegisterCVars()
 
 void MonitorTutorStatus()
 {
-	static cvar_t *tutor_enable = NULL;
+	/*static cvar_t *tutor_enable = NULL;
 	static bool tutor_enableCvarExists = true;
 
 	bool shouldTutorBeOn = false;
@@ -119,5 +119,5 @@ void MonitorTutorStatus()
 		}
 	}
 
-	s_nextCvarCheckTime = gpGlobals->time + 1.0f;
+	s_nextCvarCheckTime = gpGlobals->time + 1.0f;*/
 }
